@@ -1,25 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradCal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 <body>
 
-    <h1>TradCal</h1>
-    <h2>Trading Journal</h2>
+<div class="container mt-5">
 
-    <p>Welcome to TradCal.</p>
+    <div class="text-center mb-5">
+        <h1 class="display-4">TradCal</h1>
+        <p class="lead">Trading Journal & Performance Tracker</p>
+    </div>
 
-    <h3>My Trades</h3>
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h2 class="mb-0">My Trades</h2>
+        </div>
 
-    {% for trade in trades %}
-        <hr>
-        <p><strong>Instrument:</strong> {{ trade.instrument }}</p>
-        <p><strong>Direction:</strong> {{ trade.direction }}</p>
-        <p><strong>Entry:</strong> {{ trade.entry_price }}</p>
-        <p><strong>Exit:</strong> {{ trade.exit_price }}</p>
-        <p><strong>Notes:</strong> {{ trade.notes }}</p>
-    {% endfor %}
+        <div class="card-body">
+
+            {% for trade in trades %}
+                <div class="mb-4">
+
+                    <p><strong>Instrument:</strong> {{ trade.instrument }}</p>
+
+                    <p><strong>Direction:</strong> {{ trade.direction }}</p>
+
+                    <p><strong>Entry:</strong> {{ trade.entry_price }}</p>
+
+                    <p><strong>Exit:</strong> {{ trade.exit_price }}</p>
+
+                    <p><strong>Notes:</strong> {{ trade.notes }}</p>
+
+                    <hr>
+
+                </div>
+            {% empty %}
+                <p>No trades recorded yet.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
