@@ -1,4 +1,11 @@
 from django.shortcuts import render
+from .models import Trade
 
 def home(request):
-    return render(request, 'trades/home.html')
+    trades = Trade.objects.all()
+
+    return render(
+        request,
+        'trades/home.html',
+        {'trades': trades}
+    )

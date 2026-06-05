@@ -4,10 +4,22 @@
     <title>TradCal</title>
 </head>
 <body>
+
     <h1>TradCal</h1>
     <h2>Trading Journal</h2>
 
     <p>Welcome to TradCal.</p>
-    <p>Track and analyse your trades.</p>
+
+    <h3>My Trades</h3>
+
+    {% for trade in trades %}
+        <hr>
+        <p><strong>Instrument:</strong> {{ trade.instrument }}</p>
+        <p><strong>Direction:</strong> {{ trade.direction }}</p>
+        <p><strong>Entry:</strong> {{ trade.entry_price }}</p>
+        <p><strong>Exit:</strong> {{ trade.exit_price }}</p>
+        <p><strong>Notes:</strong> {{ trade.notes }}</p>
+    {% endfor %}
+
 </body>
 </html>
