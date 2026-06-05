@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Trade
+from .forms import TradeForm
 
 
 def home(request):
@@ -9,6 +10,24 @@ def home(request):
         request,
         'trades/home.html',
         {'trades': trades}
+    )
+
+
+def add_trade(request):
+    if request.method == 'POST':
+        form = TradeForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    else:
+        form = TradeForm()
+
+    return render(
+        request,
+        'trades/add_trade.html',
+        {'form': form}
     )
 
 
