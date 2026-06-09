@@ -1,0 +1,1 @@
+web: gunicorn tradecal_project.wsgi
