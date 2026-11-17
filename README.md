@@ -4,7 +4,9 @@ TradCal is a full-stack Django trading journal that lets authenticated traders c
 
 ## Live application
 
-The project is configured for Heroku deployment. Add the current deployed URL here before submission.
+TradCal is deployed on Render and uses PostgreSQL for its production database.
+
+Live website: https://tradecal-h48l.onrender.com
 
 ## Repository
 
@@ -135,19 +137,29 @@ Start the application:
 python manage.py runserver
 ```
 
+
 ## Deployment
 
-The project is prepared for Heroku with `gunicorn`, `dj-database-url`, WhiteNoise and a `Procfile`.
+TradCal is deployed on Render using GitHub for automatic deployment and PostgreSQL as its production database.
 
-1. Create the Heroku application and attach a PostgreSQL database if required.
-2. In Heroku Config Vars, set a **new** `SECRET_KEY`.
-3. Set `DEBUG=False`.
-4. Set `ALLOWED_HOSTS` to the deployed host, for example `.herokuapp.com` or the exact application hostname.
-5. Ensure `DATABASE_URL` is supplied by the database add-on.
-6. Deploy the GitHub branch.
-7. Run `python manage.py migrate` in the Heroku console after deployment.
+**Live application:** https://tradecal-h48l.onrender.com
 
-The source code does not contain the production secret key or database credentials. `.env` files and SQLite databases are excluded by `.gitignore`.
+### Deployment configuration
+
+1. The source code is hosted on GitHub.
+2. A Render web service is connected to the GitHub repository.
+3. Gunicorn runs the Django application.
+4. WhiteNoise serves static files.
+5. PostgreSQL is configured through the `DATABASE_URL` environment variable.
+6. Production environment variables include `SECRET_KEY`, `DEBUG=False`, and `ALLOWED_HOSTS`.
+7. `CSRF_TRUSTED_ORIGINS` includes the Render application URL.
+8. Django database migrations have been applied.
+9. Render automatically deploys updates pushed to the connected GitHub branch.
+
+### Security
+
+Production secrets and database credentials are stored in environment variables rather than committed to GitHub. The `.env` file is excluded through `.gitignore`.
+
 
 > Security note: if a secret was committed in an earlier version of the repository, it must be rotated in the hosting environment because removing it from the latest source does not invalidate an exposed credential.
 
