@@ -2,8 +2,12 @@
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
+
 
 # Production secrets must be supplied as environment variables.
 SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-only-secret-key-change-me')
